@@ -9,6 +9,10 @@ let tasks = [];
 
 function renderTask() {
    const value = input.value
+
+   if (value.length === 0) {
+    return;
+}
     
     const newTask = {
        id: Date.now(),
@@ -21,7 +25,6 @@ function renderTask() {
 
     const cssClass = newTask.done ? 'textTask textTask--done' : 'textTask';
 
-   if (value.length > 0) {
       const newItem = document.createElement('li')
       newItem.classList.add(
          'list-group-item',
@@ -29,7 +32,6 @@ function renderTask() {
          'justify-content-between',
          'align-items-center',
       )
-   
       newItem.innerHTML = `
             <span class="${cssClass}">${newTask.text}</span>
             <div class="wrapper__done--close">
@@ -39,7 +41,6 @@ function renderTask() {
         `
       newItem.setAttribute('id', newTask.id);
       listGroup.insertAdjacentElement('beforeend', newItem)
-   }
    input.value = ''
    input.focus()
 }
@@ -50,10 +51,9 @@ function deleteTask(event) {
       parentNode.remove()
 
 
-      const id = Number(parentNode.id)//рядок всі дані із розмітки = рядку, а Date now() - числовий тип данних
-    //   const index = tasks.findIndex((task) => task.id === id)//Перший спосіб
-        tasks = tasks.filter(task => task.id === id)//перезаписали так як вертаємо новий масив
-        tasks.splice(index, 1)
+      const id = Number(parentNode.id)//рядок всі дані із розмітки = рядок, а Date now() - числовий тип данних
+      const index = tasks.findIndex((task) => task.id === id)
+      tasks.splice(index,1)
    }
 }
 function doneTask(event) {
@@ -67,9 +67,11 @@ function doneTask(event) {
 
   
     const task = tasks.find((task) => task.id === id)
-    task.done = !task.done
+    if (!task) {
+        return;
+    }
+    task.done = task.done ? false : true;
     console.log(task)
-
 
 
    if (clickedEl.classList.contains('btn__done')) {
@@ -79,8 +81,6 @@ function doneTask(event) {
          textTask.classList.remove('textTask--done')
       }
    }
-
-    
 }
 
 

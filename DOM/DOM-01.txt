@@ -1,0 +1,236 @@
+УРОК 1 Об'єктна моедль документа і DOM
+
+Існує декілька типів вузлів DOM:
+Елементні вузли: Це теги HTML, такі як <h1>, <div>, <p> тощо. Їх можна використовувати для зміни стилю, розміру та поведінки контенту на веб-сторінці.
+Текстові вузли: Це текстовий контент, який знаходиться між тегами HTML.
+Коментарі: Це текстові нотатки, які не відображаються на веб-сторінці, але можуть бути корисними для розробників.
+Атрибути: Це додаткові параметри, які можна використовувати для зміни поведінки елементів HTML.
+Інші типи: Існують й інші типи вузлів DOM, які використовуються для спеціальних цілей, наприклад, для обробки XML-даних.
+
+Програма на JS можуть запускатись всюди де встановлена віртуальна машина - в Основному це БРАУЗЕР і СЕРВЕР(з пакетром npm).
+
+БРАУЗЕР
+
+-об'єктна модель документа(Document Object Model,DOM) - для управління змістом HTML-документа.
+
+-об'єктна модель браузера (Browser Model Object,BOM) - додаткові об'єкти
+
+
+Формат дом-дерева містить 12 різних форматів об'єкта основні з них:
+--------------------------
+1.-document - об'єкт,точка входа в DOM і містить всі інші об'єкти DOM:
+
+Властивості:    
+    - documentElement: Кореневий елемент.
+    - body
+    - title
+    - URL
+ Методи:
+    - getElementById(id)
+    - getElementsByTagName(name)   
+    - createElement(name)
+--------------------------
+
+2.<теги> - вузли-елементи,які представляють теги такі як <h1>, <div>, <p> тощо.
+
+Властивості:
+    - tagName.
+    - attributes.
+    - childNodes.
+    Методи:
+        appendChild(node): Додає дочірній вузол до тега.
+        removeChild(node): Видаляє дочірній вузол з тега
+
+
+
+#text - текствові вузли 
+#comment - коментарії
+
+script - завжди вкінці,щоб бути впевненим,що елемент дерево вже построєно.
+
+УРОК 2 Навігація по DOM parentNode, nextSibling, previousSibling,childNodes
+
+childNodes - представляє собою колекцію дочірніх вузлів певного вузла, зазвичай вузла елемента у HTML-документі. Ці дочірні вузли можуть включати елементи, текстові вузли, коментарі та інше. 
+Як перебирати вкладені елементи html документа:
+
+дочірні вузли - елементи,які є дітьми вузла.
+нащадки - всі елементи,які лежать всередині чогось.
+
+Для вузла HTML, HEAD являється дочірнім вузлом,але для TITLE вже не буде дочірнім вузлом,тому що він вкладений в HEAD,
+але нащатками для вузла HTML буде і HEAD та TITLE.
+Для HEAD,#text являється нащатками
+
+Для того,щоб перебрати дочірні вузли якогось елемента використовується childNodes
+
+<script>
+for (let i = 0; i < document.body.childNodes.length; i++) {
+    console.log(document.body.childNodes[i])// #text h2 p ul #text
+}
+</script>
+
+-----------
+Псевдомасив - це об'єкт, який має властивості, масива, Наприклад, властивість length, індексація елементів за допомогою квадратних дужок, але при цьому не має типових методів масиву, таких як push, pop, forEach тощо.
+У випадку з властивістю childNodes, хоча вона повертається як об'єкт, схожий на масив, це фактично колекція DOM-вузлів. Таким чином, ви можете ітерувати цю колекцію за допомогою циклу, але ви не можете використовувати методи масиву без перетворення цього об'єкта на тип Array.
+-----------
+
+Властивість childNodes у вузлі DOM є псевдомасивом(об'єктом),але в ньому присутні деякі методи масива(forEach,filter,map),тому його можна переписати через цикл for of:
+for (let child of document.body.childNodes) {
+    console.log(child)
+}
+або 
+let arr = Array.from(document.body.childNodes)
+arr.forEach((el) => console.log(el))
+
+
+
+2.1 Метод firstChild и lastChild - повертають з об'єкта вузла DOM перший і останній дочірні вузли.
+
+let html = document.documentElement
+let first = html.firstChild;
+let last = html.lastChild;
+
+або 
+let first = html.childNodes[0];
+let last = html.childNodes[html.childNodes.length - 1];
+
+2.hasChildNodes() - перевіряє чи існує у елемента дочірній елемент boolean
+
+console.log(html.hasChildNodes())//true
+
+3.children - виводить тільки HTML,HEAD,TITLE без дочірніх вузлів #text.
+
+сусіди - це вузли,в яких один і тот же батько.
+наприклад батько html:сусіди head body
+<html>
+    <head></head><body></body>
+</html>
+
+4.nextSibling - наступний сусід
+  head наступний йде body
+5.previousSibling - минулий сусід
+  для body буде head
+
+УРОК 3 методи пошуку елементів DOM querySelector(elem.closest,elemA.contains(elemB)),querySelectorAll(matches),getElementById
+
+Селектори - це шаблони, які використовуються для вибору елементів на веб-сторінці для подальшого застосування до них стилей. Вони не обмежені тільки тегами HTML; вони також можуть вибирати елементи за класом, ідентифікатором, атрибутами, а також за їхнім вкладенням і зв'язком з іншими елементами.
+
+3.1 getElementById - знайде перший елемент з ідентифікатором id або null
+<div id="div_id">
+    <p>DOM object</p>
+</div>
+const divEl = document.getElementById('div_id')
+або
+console.log(div_id)//краще так не писати може бути переоприділенна
+
+3.2 querySelectorAll - вертає список елементів 
+let list = document.querySelectorAll('ul > li');
+for (item of list) {
+    console.log(item.outerHTML);
+} - бачимо розмітку
+
+    3.2.1 matches
+
+    <div class="content__table">
+    <ul class="star-list">
+        <li class="star">Про сіріус</li>
+        <li class="star">Про альдебаран</li>
+        <li class="contact">Зворотній зв'язок</li>
+    </ul>
+    </div>
+
+    let list = document.querySelectorAll('ul.star-list > li')
+    for (item of list) {
+        Якщо li з класом star співпадає - виводить цю розмітку
+        if (item.matches('li.star')) console.log(item.outerHTML)
+    }
+
+3.3 querySelector - він повертає перший знайдений елемент або null
+let listFirstSolo = document.querySelector('ol > li:first-child')
+console.log(listFirstSolo)
+
+3.3.1 elem.closest -  шукає найближчого предка
+let list = document.querySelector('li.star')
+console.log(list.closest('.star-list').outerHTML)//ul
+console.log(list.closest('.content__table').outerHTML)//div class="content__table"
+console.log(list.closest('h2'))//null
+
+Різниця між старими колекціями пошуку за тегами класами відрізняються від нових,що старі вертають живу колекцію,а старі неживую.
+
+3.3.2 elemA.contains(elemB)//вертає true,якщо elemB є дочірнім елементом elemA
+
+let div = document.querySelector('div.content__table')
+let ul = document.querySelector('ul.star-list')
+if (div.contains(ul)) {
+console.log('it is')
+}
+
+
+УРОК 4властивості вузлів DOM nodeName, innerHTML, outerHTML, data, textContent, hidden
+
+console.log(document.body.constructor.name)//HTMLBodyElement
+Ми звернулись до body звернулись до його конструктора і вказали властивість name
+
+Щоб дізнатись до якого елемента відноситься вузол використовуємо оператор instanceof
+
+<!--comment--> <h1>Заголовок</h1>
+console.log(document.body.constructor.name)//HTMLBodyElement
+console.log(document.body instanceof HTMLBodyElement)//true
+console.log(document.body instanceof HTMLElement)//true
+console.log(document.body instanceof Element)//true
+console.log(document.body instanceof Element)//true
+
+HTMLBodyElement являється дочірнім елементом HTMLElement,а HTMLElement дочірній елемент Element
+console.log(document.body instanceof Text)//false
+
+Щоб подивитись структуру любого елемента DOM дерева console.dir(document.body)
+                                                    console.log(document.body) - ми побачимо вміст-розмітку body
+
+
+4.2 innerHTML - змінює вміст всередині тегів 
+
+ let exampleDiv = document.getElementById('example');
+// Встановлення innerHTML
+exampleDiv.innerHTML = "<p>Goodbye, <strong>world!</strong></p>";
+// Результат: <div id="example"><p>Goodbye, <strong>world!</strong></p></div>
+// Встановлення outerHTML
+exampleDiv.outerHTML = "<p>Goodbye, <strong>world!</strong></p>";
+// Результат: <p>Goodbye, <strong>world!</strong></p>
+
+
+4.3 outerHTML - змінює не тільки всередині вміст,а замінює вмістом всю розмітку,яка існувала
+
+
+https://learn.javascript.ru/dom-nodes#primer-dom
+Зміст 
+Браузерне оточення, специфікації
+DOM-дерево
+Навігація по DOM
+Пошук: getElement, querySelector
+
+
+Дочірні вузли - це елементи, які є безпосередніми дітьми певного вузла. Наприклад, в контексті HTML <body> може мати дочірні елементи <div>, <ul>,
+Нащадки - це всі елементи, які вкладені в даний вузол, включаючи дітей, їхніх дітей і так далі. 
+
+Колекція childNodes 
+childNodes  – це спеціальний ітеративний об’єкт-псевдомасив,містить список усіх дочірніх вузлів, включаючи текстові вузли.
+(i) - Колекції DOM доступні лише для зчитування
+
+Сусіди - це вузли, які є нащадками одного батька.
+Батьківський вузол доступний як parentNode.
+-----------------------------
+Навігація лише за елементами
+-----------------------------
+children – колекція дітей, які є елементами.
+firstElementChild, lastElementChild – перший і останній дочірні елементи.
+previousElementSibling, nextElementSibling – сусідні елементи.
+parentElement – батьківський елемент.
+
+Чому parentElement? Чи може батько бути не елементом?
+Властивість parentElement має батька,вузол parentNode може не мати.
+
+Для вузла DOM та для навігації елементів, ми можемо перейти до його безпосередніх сусідів за допомогою властивостей навігації.
+
+Існує два основних набори:
+
+Для всіх вузлів: parentNode, childNodes, firstChild, lastChild, previousSibling, nextSibling.
+Для елементів: parentElement, children, firstElementChild, lastElementChild, previousElementSibling, nextElementSibling.

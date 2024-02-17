@@ -69,6 +69,11 @@ Array--
 17.splice(i,1)
 i - це індекс 
 1 - к-сть елементів,які будуть видалені починаючи з цього індекса.
+                    let array = [1, 2, 3, 4, 5];
+                    let i = 2; 
+                    array.splice(i, 1);
+console.log(array); // [1, 2, 4, 5]
+
 18.reduce - використовується для зменшення масиву до одного значення,тому і reduce.
 Passing 0 as initialValue is the same as declaring let sum = 0 when using .forEach() to calculate the sum.!
 For multiplication, we use an initialValue of 1.
