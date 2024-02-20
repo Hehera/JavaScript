@@ -254,7 +254,6 @@ numbers.forEach(function(number, index) {
 Если вам нужно проверить, удовлетворяет ли хотя бы один элемент массива определенному условию, лучше использовать метод some.
 
 
-
 Object.entries(a) - цей виклик методу Object.entries() перетворює об'єкт results на масив масивів, 
 де кожен підмасив містить два елементи: перший елемент - це ключ з об'єкта results, 
 а другий - відповідне йому значення.
@@ -263,11 +262,9 @@ const a = { a: 1, b: 2, c: 3 };
 const entries2 = Object.entries(a);
 console.log(entries2);// [ ['a', 1], ['b', 2], ['c', 3] ]
 
-
-
-
-
-
-
+localStorage
+1.localStorage.setItem('tasks',JSON.stringify(tasks)) - записати в localStorage
+2.tasks = JSON.parse(localStorage.getItem('tasks')) - отримали у форматі JSON по ключу 'tasks' тепер парсим в масив 
+3.Відобразити дані на сторінці,які є вже в масиві.
 
 
