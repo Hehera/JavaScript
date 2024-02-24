@@ -76,7 +76,7 @@ console.log(array); // [1, 2, 4, 5]
 
 18.reduce - використовується для зменшення масиву до одного значення,тому і reduce.
 Passing 0 as initialValue is the same as declaring let sum = 0 when using .forEach() to calculate the sum.!
-For multiplication, we use an initialValue of 1.
+Початкове значення суми дорівнює 0. Початкове значення добутку (множення) дорівнює 1.
 19.findIndex - повертає індекс першої виконаної умови (true) інакше, повертає - 1:
                     const numbers = [10, 20, 30, 40, 50];
                     // Ищем индекс первого числа больше 25

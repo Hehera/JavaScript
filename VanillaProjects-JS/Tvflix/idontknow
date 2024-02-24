@@ -1,0 +1,2 @@
+/* .search-btn:is(:hover, :focus-visible)
+margin-inline-end: auto; */
