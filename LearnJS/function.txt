@@ -55,7 +55,6 @@ const isLegal = (age) => age >= 18;
         return args.reduce((acc, num) => acc + num, 0);
     };
 
-<<<<<<< HEAD
 2.Arrow functions(стрілкові функції)
 Функції ми можемо оголосити вказавши її імя:
 Приклад 1
@@ -95,7 +94,4 @@ const isLegal = (age) => age >= 18;
     const sumArrow = (...args) => {
         return args.reduce((acc, num) => acc + num, 0);
     };
-=======
-
->>>>>>> d366e0c (Nulish coalsescing,Optional chaining(advanced))
 

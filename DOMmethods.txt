@@ -1,3 +1,10 @@
+removeEventListener
+document.querySelectorAll - вертає псевдомасив та шукає по однакових класах всі елементи. (i) - AddEventListener не доступний одразу,тільки всередині forEach.
+Щоб зі всіх однакових зрозуміти на яку саме нажав користувач - об'єкт event- target, eventTarget
+e.stopPropagation() - зупинити всплиття/занурення.
+
+
+    
 
 
 

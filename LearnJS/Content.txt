@@ -1,0 +1,42 @@
+CONTENT
+|
+Array && callback I,II(concatenation)
+|
+Arrow functions(default parametrs,rest parameters)
+|
+Implicit return
+|
+Array destructuring
+|
+Object II(Reading dunamic property)
+|
+Object III(Object shorthand,destructuring,concatenate,optional chaining,nullish coalescing,control flow,Implicit conversion,falsy values)
+|
+Array of object I,II(filter,find,some,every,reduce)
+|
+Try catch
+|
+
+
+
+Зміст
+|
+Масиви I,II(колбек,конкатенація)
+|
+Стрілочні функції(параметри за замовчуванням, інші параметри)
+|
+Неявне повернення
+|
+Деструктуризація масиву
+|
+Об'єкти II(Читання динамічної властивості)
+|
+Об'єкти III(Скорочення об’єкта,Деструктуризація,конкатенація,необов'язковий ланцюжок(?.),нульове злиття(??),керування потоком,Неявне перетворення,falsy-значення)
+|
+Масиви об'єктів I,II(filter,find,some,every,reduce)
+|
+
+
+
+
+

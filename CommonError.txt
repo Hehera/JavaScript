@@ -71,3 +71,5 @@
     - NaN
     - "" (empty string)  
 
+
+6.course.isCompleted is already a boolean so there's no need to compare it to true with === true

@@ -33,6 +33,15 @@ alert( document.body.previousSibling ); // HTMLHeadElement
       console.log(document.body.childNodes[i]); // Text, DIV, Text, UL, ..., SCRIPT
     }
   </script>
+href
+  let links = document.querySelectorAll('a');
+        for (let link of links) {
+            let href = link.getAttribute('href')
+            if (!href) continue; // Если href не существует, то есть если ссылка не имеет атрибута href, цикл переходит к следующей итерации, пропуская остаток кода внутри цикла для текущей ссылки.
+            if (!href.includes('://')) continue;
+            if (href.startsWith('http://internal.com/test')) continue;
+            link.style.color = 'orange'
+        }
 -----------
 Question--
 -----------
@@ -111,3 +120,26 @@ for (item of list) {
 
 
 /*Гетери (getters) - це методи, які використовуються для отримання значень ВСТАСТИВОСТЕЙ об'єкта.*/
+
+
+const btns = document.querySelectorAll('.btn')
+        function handleClick(e) {
+                console.log('target', e.target)
+                console.log('currentTarget', e.currentTarget)
+                console.log(e.currentTarget === e.target)//false
+                // e.stopPropagation()
+            }
+
+        window.addEventListener('click', function (e) {//коли нажали на кнопку спершу handleClick спрацював,а потім window
+            console.log('click on window',e.target)
+            e.stopPropagation()
+        },{capture:true})            
+        btns.forEach(button => {
+            button.addEventListener('click', handleClick)
+        })
+
+        const img = document.querySelector('img')
+        img.addEventListener('mouseover', (e) => {
+                console.log(e.currentTarget)
+                console.log(this)
+            })
