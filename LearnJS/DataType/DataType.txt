@@ -1,0 +1,11 @@
+1.Неявне перетворення та хибні значення в контексті boolean/
+Автоматично перетворюється на boolean value,коли воно JS очікував boolean value,а прийшло зовсім інше.
+
+Falsy values:
+ Значення нижче буде перетворено на false, а все інше буде перетворено на true:
+    - false (is already a boolean)
+    - null
+    - undefined
+    - 0
+    - NaN
+    - "" (empty string) 

@@ -407,7 +407,7 @@ elem.attributes - це колекція об’єктів, які належат
 
 ----------------------------
 Клонування вузлів: cloneNode
-
+----------------------------
 Можна створити функцію та помістити код в неї. Але є ще один спосіб – клонувати наявний div та змінити текст всередині (якщо потрібно).
 
 Виклик elem.cloneNode(true) створює копію елемента – з усіма атрибутами та піделементами. Якщо ми викличемо elem.cloneNode(false), тоді буде створена копія без дочірніх елементів.
@@ -422,7 +422,24 @@ Ex
 
     div.after(div2); // вставити клонований елемент після існуючого `div`
     </script>
-----------------
-DocumentFragment
-----------------
-DocumentFragment це спеціальний DOM-вузол який служить обгорткою для передачі списку вузлів.
+Recap
+
+Методи для створення нових вузлів:
+document.createElement(tag) – створює елемент з заданим тегом,
+elem.cloneNode(deep) – клонує елемент, якщо deep==true, то з усіма нащадками.
+
+Вставка та видалення:
+
+node.append(...nodes or strings) – вставляє в node, в кінець,
+node.prepend(...nodes or strings) – вставляє в node, на початку,
+node.before(...nodes or strings) – вставляє прямо перед node,
+node.after(...nodes or strings) – вставляє відразу після node,
+node.replaceWith(...nodes or strings) – замінює node.
+node.remove() – видаляє node.
+
+Метод elem.insertAdjacentHTML(where, html) вставляє заданий HTML в залежності від значення параметра where:
+
+"beforebegin" – вставляє html прямо перед elem,
+"afterbegin" – вставляє html в elem, на початку,
+"beforeend" – вставляє html в elem, в кінці,
+"afterend" – вставляє html відразу після elem.
