@@ -144,31 +144,128 @@
 // передавши parentElement, ми маємо можливість контролювати, куди саме буде вставлено створений список у структурі DOM.
 // Тут ми дослідили рекурсію => файл
 // -------------------------------------------------------------
-// function dataObj(data, parentElement) {
-//     let ulElement = document.createElement('ul');
-//     // Проходимося по кожному ключу у вхідному об'єкті
-//     for (let key in data) {
-//         // Створюємо елемент <li> для поточного ключа
-//         let liElement = document.createElement('li');
-//         // Додаємо текст ключа до <li>
-//         liElement.textContent = key;
-//         // Якщо значення під ключем є об'єктом і чи не відстутнє, рекурсивно створюємо для нього вкладений список
-//         if (typeof data[key] === 'object' && data[key] !== null) {
-//             // Рекурсивний виклик dataObj для створення вкладеного списку
-//             dataObj(data[key], liElement)
-//         }// Додаємо <li> до <ul>
-//         ulElement.appendChild(liElement)
-//         // Додаємо <ul> до батьківського елемента (parentElement)
-//         if (parentElement) {
-//             parentElement.appendChild(ulElement)
-//         } else {
-//         // Якщо не вказано батьківського елемента, додаємо <ul> до body
-//             document.body.appendChild(ulElement)
-//         }
-//     }
-// }
+function dataObj(data, parentElement) {
+   let ulElement = document.createElement('ul')
+   // Проходимося по кожному ключу у вхідному об'єкті
+   for (let key in data) {
+      // Створюємо елемент <li> для поточного ключа
+      let liElement = document.createElement('li')
+      // Додаємо текст ключа до <li>
+      liElement.textContent = key
+      // Якщо значення під ключем є об'єктом і чи не відстутнє, рекурсивно створюємо для нього вкладений список
+      if (typeof data[key] === 'object' && data[key] !== null) {
+         // Рекурсивний виклик dataObj для створення вкладеного списку
+         dataObj(data[key], liElement)
+      } // Додаємо <li> до <ul>
+      ulElement.appendChild(liElement)
+      // Додаємо <ul> до батьківського елемента (parentElement)
+      if (parentElement) {
+         parentElement.appendChild(ulElement)
+      } else {
+         // Якщо не вказано батьківського елемента, додаємо <ul> до body
+         document.body.appendChild(ulElement)
+      }
+   }
+}
 // dataObj(data)
-// -------------------------------------------------------------
+// ------------------------------------------------
+// -----------
+// Завдання 3
+// -----------
+// Розфарбуйте годиник за допомогою setInterval
+ function getTime() {
+    const time = document.querySelector('.time')
+    const hour = document.querySelector('.hour')
+    const minutes = document.querySelector('.minutes')
+    const seconds = document.querySelector('.seconds')
+    const btns = document.querySelector('.btns')
+    const start = document.querySelector('.start')
+    const stop = document.querySelector('.stop')
+ 
+     let isRun = false
+     let intervalId;
+     start.addEventListener('click', function (){
+          if(!isRun) {
+             intervalId = setInterval(getTime,1000)
+             isRun = true
+          }
+     })
+     stop.addEventListener('click', function(){
+         if (isRun) {
+             clearInterval(intervalId)
+             isRun = false
+         }
+     })
+ 
+    const currentDate = new Date()
+ 
+    const currentYear = currentDate.getHours()
+    const currentMinutes = currentDate.getMinutes()
+    const currentSeconds = currentDate.getSeconds()
+ 
+    const formattedMinutes = currentMinutes < 10 ? '0' + currentMinutes : currentMinutes
+    const formattedSeconds  = currentSeconds < 10 ? '0' + currentSeconds : currentSeconds
+ 
+ 
+    hour.textContent = currentYear
+    minutes.textContent = formattedMinutes
+    seconds.textContent = formattedSeconds
+ }
+ // getTime()
+ // --------------------------------------------------
+// -----------
+// Завдання 4
+// -----------
+ // Напишіть код для сортування по імені, колонка "name"
+ const tdAll = document.querySelectorAll('tbody td:nth-child(1)')
+    let tdArr = []
+    
+    tdAll.forEach(td => {
+        tdArr.push(td.textContent.trim())
+    })
+    const sorted = tdArr.sort()
+    console.log(sorted)
+    
+    tdAll.forEach((td, index) => {
+        td.textContent = sorted[index];
+    });
+ // ----------
+// Завдання 5  задачі => https://maxello.gitbooks.io/js-note/content/16_dom_events/zadachi.html 
+// ----------
+// сделайте так, чтобы при клике  id="hider" на кнопку исчезал элемент с id="hide"
+const btn = document.getElementById('hider')
+ const div = document.getElementById('hide')
+    btn.addEventListener('click', function(){
+    div.remove()
+ })
+
+// ----------
+// Завдання 6 
+// ----------
+// Создайте кнопку, при клике на которую, она будет скрывать сама себя.
+//  <input type="button" onclick="this.style.display = 'none' " id="hider"/>
+
+// ----------
+// Завдання 7 
+// ----------
+// Есть список сообщений. Добавьте каждому сообщению по кнопке для его скрытия. Картинка для кнопки удаления:
+const panes = document.querySelectorAll('.pane');
+
+ panes.forEach(function(pane) {
+     pane.addEventListener('click', function(event) {
+         if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn-close')) {
+             event.target.parentElement.style.display = 'none';
+         }
+     });
+ });
+// ----------
+// Завдання 8 
+// ----------
+ 
+
+
+
+
 
 
 

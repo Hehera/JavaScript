@@ -12,10 +12,11 @@ Object II(Reading dunamic property)
 |
 Object III(Object shorthand,destructuring,concatenate,optional chaining,nullish coalescing,control flow,Implicit conversion,falsy values)
 |
-Array of object I,II(filter,find,some,every,reduce)
+Array of object I,II(filter,find,some,every,reduce,Immutability)
 |
 Try catch
 |
+
 
 
 
@@ -33,7 +34,7 @@ Try catch
 |
 Об'єкти III(Скорочення об’єкта,Деструктуризація,конкатенація,необов'язковий ланцюжок(?.),нульове злиття(??),керування потоком,Неявне перетворення,falsy-значення)
 |
-Масиви об'єктів I,II(filter,find,some,every,reduce)
+Масиви об'єктів I,II(filter,find,some,every,reduce,Незмінність)
 |
 
 

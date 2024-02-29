@@ -85,22 +85,63 @@ let data = {
       }
    }
 }
-// 1) Object.entries(data) - вертає масив,тому використовуємо for of
-function dataObj(data) {
-   for (let [key, value] of Object.entries(data)) {
-      console.log(value)
-   }
-}
-// dataObj(data)
-
-
-// 2варіант
-
-// function dataParentRecursion(obj) {
-//     if(obj)
+// -------------------------------
+// Напишіть функцію createTree яка створює вкладений ul/li список з вкладеного об’єкта.
+// 1.Створіть вузли дерева та додайте їх за допомогою методів DOM.
+// function createTree(container, obj) {
+//    container.innerHTML = createTreeText(obj)
 // }
 
 
 
+// Дано дерево з вкладених ul/li.
 
- 
+// Напишіть код, який додає до кожного <li> кількість його нащадків. Пропускаючи пусті вузли (без дочірніх елементів).
+
+// function amout(obj) {
+//    for (let key of obj) {
+//       const value = obj[key]
+//       console.log(value)
+//    }
+// }
+// amout(obj)
+
+// const one = document.getElementById('one')
+// one.insertAdjacentHTML('afterend',`<li>2</li><li>3</li>`) 
+
+// {/* <li>2</li><li>3</li> */}
+
+
+// Напишіть код для сортування по імені, колонка "name"
+// const tdAll = document.querySelectorAll('tbody td:nth-child(1)')
+// let tdArr = []
+
+// tdAll.forEach(td => {
+//    tdArr.push(td.textContent.trim())
+// })
+// const sorted = tdArr.sort()
+// console.log(sorted)
+
+// tdAll.forEach((td, index) => {
+//     td.textContent = sorted[index];
+// });
+
+/*----------
+   Класи
+-----------*/
+
+
+// Коли ваш код почне розвиватися, у вашому вихідному коді буде кілька десятків функцій. Щоб краще організувати свій код, ви можете згрупувати функції, які виконують подібні функції, в один клас.
+
+// Інша головна причина полягає в тому, що класи можна використовувати повторно.
+
+
+// Створити клас - new
+
+// Клас чи екземпляра
+
+// Клас — це фабрика, яка може створювати екземпляри(Кожен екземпляр унікальний)
+// person1 === person2; // false Ми отримуємо false, оскільки це 2 різні екземпляри (але вони були створені з одного класу Person).
+
+
+// Конструктор має свій прототип 
